@@ -1,0 +1,109 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "mufenglin-adf"
+		},
+		"mufenglin_AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'mufenglin_AzureBlobStorage'"
+		},
+		"mufenglin_AzureHDInsight_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight'"
+		},
+		"mufenglin_AzureHDInsight_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "mufenglin"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin_AzureBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('mufenglin_AzureBlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin_AzureHDInsight')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HDInsight",
+				"typeProperties": {
+					"clusterUri": "https://mufenglin-hdinsight.azurehdinsight.net",
+					"userName": "[parameters('mufenglin_AzureHDInsight_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('mufenglin_AzureHDInsight_password')]"
+					},
+					"isEspEnabled": false,
+					"linkedServiceName": {
+						"referenceName": "mufenglin_AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin-pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "mufeng-Spark",
+						"type": "HDInsightSpark",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "adftutorial/spark/script",
+							"entryFilePath": "WordCount_Spark.py",
+							"sparkJobLinkedService": {
+								"referenceName": "mufenglin_AzureBlobStorage",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "mufenglin_AzureHDInsight",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight')]"
+			]
+		}
+	]
+}
