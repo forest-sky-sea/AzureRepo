@@ -1,0 +1,9 @@
+{
+	"name": "mufenglin-adf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "bac823b5-61ff-4d0c-9fa2-95cfe0ab97cc",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
