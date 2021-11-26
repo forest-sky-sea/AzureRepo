@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "wordcount-pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -19,7 +19,10 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "mufenglin_AzureDatabricks",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw=="
+					}
 				}
 			}
 		],
