@@ -46,12 +46,6 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"parameters": {
-					"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": {
-						"type": "string",
-						"defaultValue": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw=="
-					}
-				},
 				"annotations": [],
 				"type": "AzureDatabricks",
 				"typeProperties": {
@@ -62,6 +56,9 @@
 					},
 					"newClusterNodeType": "Standard_DS3_v2",
 					"newClusterNumOfWorker": "2",
+					"newClusterSparkConf": {
+						"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw=="
+					},
 					"newClusterVersion": "10.0.x-scala2.12",
 					"newClusterInitScripts": []
 				}
@@ -164,10 +161,7 @@
 						},
 						"linkedServiceName": {
 							"referenceName": "mufenglin_AzureDatabricks",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw=="
-							}
+							"type": "LinkedServiceReference"
 						}
 					}
 				],
