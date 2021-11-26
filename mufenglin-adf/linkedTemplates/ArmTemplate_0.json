@@ -57,9 +57,10 @@
 					"newClusterNodeType": "Standard_DS3_v2",
 					"newClusterNumOfWorker": "2",
 					"newClusterSparkConf": {
-						"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw=="
+						"spark.hadoop.fs.azure.account.key.mufenglinstorage.blob.core.windows.net": "fsjzopzjUs2ZRbAMx2aj3M9lebiPJl05En1rNODxeEwFtrcVYcMR2rl6vs3atVmGexrYYwdg1yAgW6tjMC6YFw==",
+						"spark.yarn.preserve.staging.files": "true"
 					},
-					"newClusterVersion": "5.5.x-esr-scala2.11",
+					"newClusterVersion": "10.0.x-scala2.12",
 					"newClusterInitScripts": []
 				}
 			},
