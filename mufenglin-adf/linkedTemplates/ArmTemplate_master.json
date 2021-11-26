@@ -15,7 +15,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight'"
 		},
+		"mufenglin_AzureHDInsight4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+		},
 		"mufenglin_AzureHDInsight_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "mufenglin"
+		},
+		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mufenglin"
 		},
@@ -52,8 +60,14 @@
 					"mufenglin_AzureHDInsight_password": {
 						"value": "[parameters('mufenglin_AzureHDInsight_password')]"
 					},
+					"mufenglin_AzureHDInsight4_password": {
+						"value": "[parameters('mufenglin_AzureHDInsight4_password')]"
+					},
 					"mufenglin_AzureHDInsight_properties_typeProperties_userName": {
 						"value": "[parameters('mufenglin_AzureHDInsight_properties_typeProperties_userName')]"
+					},
+					"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
+						"value": "[parameters('mufenglin_AzureHDInsight4_properties_typeProperties_userName')]"
 					}
 				}
 			},

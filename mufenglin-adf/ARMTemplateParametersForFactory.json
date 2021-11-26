@@ -11,7 +11,13 @@
 		"mufenglin_AzureHDInsight_password": {
 			"value": ""
 		},
+		"mufenglin_AzureHDInsight4_password": {
+			"value": ""
+		},
 		"mufenglin_AzureHDInsight_properties_typeProperties_userName": {
+			"value": "mufenglin"
+		},
+		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"value": "mufenglin"
 		}
 	}

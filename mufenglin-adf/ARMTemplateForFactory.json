@@ -15,7 +15,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight'"
 		},
+		"mufenglin_AzureHDInsight4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+		},
 		"mufenglin_AzureHDInsight_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "mufenglin"
+		},
+		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mufenglin"
 		}
@@ -51,7 +59,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight",
+							"referenceName": "mufenglin_AzureHDInsight4",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -64,7 +72,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight')]"
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]"
 			]
 		},
 		{
@@ -93,6 +101,31 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('mufenglin_AzureHDInsight_password')]"
+					},
+					"isEspEnabled": false,
+					"linkedServiceName": {
+						"referenceName": "mufenglin_AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin_AzureHDInsight4')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HDInsight",
+				"typeProperties": {
+					"clusterUri": "https://mufenglin-hdinsighte4.azurehdinsight.net",
+					"userName": "[parameters('mufenglin_AzureHDInsight4_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('mufenglin_AzureHDInsight4_password')]"
 					},
 					"isEspEnabled": false,
 					"linkedServiceName": {
