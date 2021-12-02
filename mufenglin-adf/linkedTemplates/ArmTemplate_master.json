@@ -11,13 +11,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'mufenglin_AzureBlobStorage'"
 		},
-		"mufenglin_AzureHDInsight4_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
-		},
 		"mufenglin_AzureDatabricks_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'mufenglin_AzureDatabricks'"
+		},
+		"mufenglin_AzureHDInsight4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
 		},
 		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"type": "string",

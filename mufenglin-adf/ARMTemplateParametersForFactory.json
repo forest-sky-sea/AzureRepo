@@ -8,10 +8,10 @@
 		"mufenglin_AzureBlobStorage_connectionString": {
 			"value": ""
 		},
-		"mufenglin_AzureHDInsight4_password": {
+		"mufenglin_AzureDatabricks_accessToken": {
 			"value": ""
 		},
-		"mufenglin_AzureDatabricks_accessToken": {
+		"mufenglin_AzureHDInsight4_password": {
 			"value": ""
 		},
 		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
