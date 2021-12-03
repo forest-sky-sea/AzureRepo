@@ -263,6 +263,36 @@
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]",
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger-10min')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "filter-internal-exp",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 10,
+						"startTime": "2021-12-03T13:10:00",
+						"timeZone": "China Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/filter-internal-exp')]"
+			]
 		}
 	]
 }
