@@ -7,14 +7,7 @@
 				"name": "pyspark-script",
 				"description": "data filtering script",
 				"type": "HDInsightSpark",
-				"dependsOn": [
-					{
-						"activity": "preprocess",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -33,27 +26,6 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "mufenglin_AzureHDInsight4",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "preprocess",
-				"type": "AzureFunctionActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"functionName": "BlobTrigger1",
-					"method": "GET"
-				},
-				"linkedServiceName": {
-					"referenceName": "mufenglin_AzureFunction",
 					"type": "LinkedServiceReference"
 				}
 			}
