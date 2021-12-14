@@ -15,9 +15,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'mufenglin_AzureDatabricks'"
 		},
+		"mufenglin_AzureFunction_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'mufenglin_AzureFunction'"
+		},
 		"mufenglin_AzureHDInsight4_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+		},
+		"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://filter-internal-function-app.azurewebsites.net"
 		},
 		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"type": "string",
@@ -56,8 +64,14 @@
 					"mufenglin_AzureDatabricks_accessToken": {
 						"value": "[parameters('mufenglin_AzureDatabricks_accessToken')]"
 					},
+					"mufenglin_AzureFunction_functionKey": {
+						"value": "[parameters('mufenglin_AzureFunction_functionKey')]"
+					},
 					"mufenglin_AzureHDInsight4_password": {
 						"value": "[parameters('mufenglin_AzureHDInsight4_password')]"
+					},
+					"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
+						"value": "[parameters('mufenglin_AzureFunction_properties_typeProperties_functionAppUrl')]"
 					},
 					"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 						"value": "[parameters('mufenglin_AzureHDInsight4_properties_typeProperties_userName')]"

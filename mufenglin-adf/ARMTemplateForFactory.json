@@ -15,9 +15,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'mufenglin_AzureDatabricks'"
 		},
+		"mufenglin_AzureFunction_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'mufenglin_AzureFunction'"
+		},
 		"mufenglin_AzureHDInsight4_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+		},
+		"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://filter-internal-function-app.azurewebsites.net"
 		},
 		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"type": "string",
@@ -278,6 +286,24 @@
 					},
 					"newClusterVersion": "10.0.x-scala2.12",
 					"newClusterInitScripts": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin_AzureFunction')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureFunction",
+				"typeProperties": {
+					"functionAppUrl": "[parameters('mufenglin_AzureFunction_properties_typeProperties_functionAppUrl')]",
+					"functionKey": {
+						"type": "SecureString",
+						"value": "[parameters('mufenglin_AzureFunction_functionKey')]"
+					},
+					"authentication": "MSI"
 				}
 			},
 			"dependsOn": []

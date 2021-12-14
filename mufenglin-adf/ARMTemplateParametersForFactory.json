@@ -11,8 +11,14 @@
 		"mufenglin_AzureDatabricks_accessToken": {
 			"value": ""
 		},
+		"mufenglin_AzureFunction_functionKey": {
+			"value": ""
+		},
 		"mufenglin_AzureHDInsight4_password": {
 			"value": ""
+		},
+		"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
+			"value": "https://filter-internal-function-app.azurewebsites.net"
 		},
 		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
 			"value": "mufenglin"
