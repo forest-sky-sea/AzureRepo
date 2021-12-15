@@ -49,7 +49,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"functionName": "HttpTrigger1",
+					"functionName": "filter-internal-function-app",
 					"method": "GET"
 				},
 				"linkedServiceName": {
