@@ -256,7 +256,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"functionName": "filter-internal-function-app",
+							"functionName": "HttpTrigger1",
 							"method": "GET",
 							"headers": {}
 						},
