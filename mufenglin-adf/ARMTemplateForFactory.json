@@ -402,10 +402,15 @@
 						"referenceName": "mufenglin_AzureBlobStorage",
 						"type": "LinkedServiceReference"
 					}
+				},
+				"connectVia": {
+					"referenceName": "mufenglin-integrationRuntime",
+					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
+				"[concat(variables('factoryId'), '/integrationRuntimes/mufenglin-integrationRuntime')]"
 			]
 		},
 		{
@@ -437,6 +442,26 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/filter-internal-exp')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin-integrationRuntime')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 10,
+							"cleanup": false
+						}
+					}
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }
