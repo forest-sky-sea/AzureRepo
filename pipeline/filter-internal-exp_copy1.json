@@ -1,0 +1,35 @@
+{
+	"name": "filter-internal-exp_copy1",
+	"properties": {
+		"description": "experimental data",
+		"activities": [
+			{
+				"name": "pyspark-script",
+				"description": "data filtering script",
+				"type": "HDInsightSpark",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"rootPath": "filter-internal/script",
+					"entryFilePath": "filter_script.py",
+					"sparkJobLinkedService": {
+						"referenceName": "mufenglin_AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "mufenglin_AzureHDInsight4",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
