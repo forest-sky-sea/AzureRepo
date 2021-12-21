@@ -1,0 +1,90 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"mufenglin_AzureBlobStorage": {
+			"type": "string"
+		},
+		"mufenglin_AzureHDInsight4": {
+			"type": "string"
+		},
+		"mufenglin_AzureFunction": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/filter-internal-exp')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "experimental data",
+				"activities": [
+					{
+						"name": "pyspark-script",
+						"description": "data filtering script",
+						"type": "HDInsightSpark",
+						"dependsOn": [
+							{
+								"activity": "preprocess",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "filter-internal/script",
+							"entryFilePath": "filter_script.py",
+							"sparkJobLinkedService": {
+								"referenceName": "[parameters('mufenglin_AzureBlobStorage')]",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "[parameters('mufenglin_AzureHDInsight4')]",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "preprocess",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "HttpTrigger1",
+							"method": "GET"
+						},
+						"linkedServiceName": {
+							"referenceName": "[parameters('mufenglin_AzureFunction')]",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
