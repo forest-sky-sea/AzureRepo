@@ -409,8 +409,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/integrationRuntimes/mufenglin-integrationRuntime')]"
+				"[concat(variables('factoryId'), '/integrationRuntimes/mufenglin-integrationRuntime')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
 			]
 		},
 		{
@@ -462,6 +462,52 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mufenglin-testing-e4')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "pyspark-filter",
+						"type": "HDInsightSpark",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "filter-internal/script",
+							"entryFilePath": "filter-script-perf-test.py",
+							"sparkJobLinkedService": {
+								"referenceName": "mufenglin_AzureBlobStorage",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "mufenglin_AzureHDInsight4",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Performance Testing"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
+			]
 		}
 	]
 }
