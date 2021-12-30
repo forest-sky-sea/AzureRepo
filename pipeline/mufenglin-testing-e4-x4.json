@@ -23,7 +23,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "mufenglin_AzureHDInsight4",
+					"referenceName": "mufenglin_HDInsight_e8",
 					"type": "LinkedServiceReference"
 				}
 			}
