@@ -21,6 +21,10 @@
 						"referenceName": "mufenglin_AzureBlobStorage",
 						"type": "LinkedServiceReference"
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "mufenglin_HDInsight_e8",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
