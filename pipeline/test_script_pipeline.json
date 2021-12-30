@@ -21,10 +21,6 @@
 						"referenceName": "mufenglin_AzureBlobStorage",
 						"type": "LinkedServiceReference"
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "mufenglin_AzureHDInsight4",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
