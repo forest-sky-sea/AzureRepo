@@ -19,15 +19,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'functionKey' of 'mufenglin_AzureFunction'"
 		},
-		"mufenglin_AzureHDInsight4_password": {
+		"mufenglin_HDInsight_e8_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+			"metadata": "Secure string for 'password' of 'mufenglin_HDInsight_e8'"
 		},
 		"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
 			"type": "string",
 			"defaultValue": "https://filter-internal-function-app.azurewebsites.net"
 		},
-		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
+		"mufenglin_HDInsight_e8_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mufenglin"
 		}
@@ -120,7 +120,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight4",
+							"referenceName": "mufenglin_HDInsight_e8",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -155,53 +155,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]",
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureFunction')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/filter-internal-exp_copy1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "experimental data",
-				"activities": [
-					{
-						"name": "pyspark-script",
-						"description": "data filtering script",
-						"type": "HDInsightSpark",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"rootPath": "filter-internal/script",
-							"entryFilePath": "filter_script.py",
-							"sparkJobLinkedService": {
-								"referenceName": "mufenglin_AzureBlobStorage",
-								"type": "LinkedServiceReference"
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight4",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]"
 			]
 		},
 		{
@@ -231,7 +186,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight4",
+							"referenceName": "mufenglin_HDInsight_e8",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -244,7 +199,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]"
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]"
 			]
 		},
 		{
@@ -274,7 +229,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight4",
+							"referenceName": "mufenglin_HDInsight_e8",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -290,7 +245,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]"
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]"
 			]
 		},
 		{
@@ -320,7 +275,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "mufenglin_AzureHDInsight4",
+							"referenceName": "mufenglin_HDInsight_e8",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -333,7 +288,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureHDInsight4')]"
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]"
 			]
 		},
 		{
@@ -430,18 +385,18 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/mufenglin_AzureHDInsight4')]",
+			"name": "[concat(parameters('factoryName'), '/mufenglin_HDInsight_e8')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "HDInsight",
 				"typeProperties": {
-					"clusterUri": "https://mufenglin-hdinsighte4.azurehdinsight.net",
-					"userName": "[parameters('mufenglin_AzureHDInsight4_properties_typeProperties_userName')]",
+					"clusterUri": "https://mufenglin-hdinsight-e8.azurehdinsight.net",
+					"userName": "[parameters('mufenglin_HDInsight_e8_properties_typeProperties_userName')]",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('mufenglin_AzureHDInsight4_password')]"
+						"value": "[parameters('mufenglin_HDInsight_e8_password')]"
 					},
 					"isEspEnabled": false,
 					"linkedServiceName": {

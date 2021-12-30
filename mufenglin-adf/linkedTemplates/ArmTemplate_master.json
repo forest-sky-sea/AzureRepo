@@ -19,15 +19,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'functionKey' of 'mufenglin_AzureFunction'"
 		},
-		"mufenglin_AzureHDInsight4_password": {
+		"mufenglin_HDInsight_e8_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'mufenglin_AzureHDInsight4'"
+			"metadata": "Secure string for 'password' of 'mufenglin_HDInsight_e8'"
 		},
 		"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
 			"type": "string",
 			"defaultValue": "https://filter-internal-function-app.azurewebsites.net"
 		},
-		"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
+		"mufenglin_HDInsight_e8_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mufenglin"
 		},
@@ -67,14 +67,14 @@
 					"mufenglin_AzureFunction_functionKey": {
 						"value": "[parameters('mufenglin_AzureFunction_functionKey')]"
 					},
-					"mufenglin_AzureHDInsight4_password": {
-						"value": "[parameters('mufenglin_AzureHDInsight4_password')]"
+					"mufenglin_HDInsight_e8_password": {
+						"value": "[parameters('mufenglin_HDInsight_e8_password')]"
 					},
 					"mufenglin_AzureFunction_properties_typeProperties_functionAppUrl": {
 						"value": "[parameters('mufenglin_AzureFunction_properties_typeProperties_functionAppUrl')]"
 					},
-					"mufenglin_AzureHDInsight4_properties_typeProperties_userName": {
-						"value": "[parameters('mufenglin_AzureHDInsight4_properties_typeProperties_userName')]"
+					"mufenglin_HDInsight_e8_properties_typeProperties_userName": {
+						"value": "[parameters('mufenglin_HDInsight_e8_properties_typeProperties_userName')]"
 					}
 				}
 			},
