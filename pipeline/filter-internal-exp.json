@@ -22,7 +22,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "driverMemory",
+						"value": "64g"
+					}
+				],
 				"typeProperties": {
 					"rootPath": "filter-internal/script",
 					"entryFilePath": "filter_script.py",
