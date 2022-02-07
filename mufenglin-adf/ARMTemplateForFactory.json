@@ -522,6 +522,7 @@
 							"arguments": [
 								"testArg=4"
 							],
+							"className": "testpackage.TestFilterInternal",
 							"sparkJobLinkedService": {
 								"referenceName": "mufenglin_AzureBlobStorage",
 								"type": "LinkedServiceReference"
