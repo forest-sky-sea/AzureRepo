@@ -205,7 +205,7 @@
 				"annotations": [],
 				"type": "HDInsight",
 				"typeProperties": {
-					"clusterUri": "https://mufenglin-hdinsight-e8.azurehdinsight.net",
+					"clusterUri": "https://mufenglin-hdinsight.azurehdinsight.net",
 					"userName": "[parameters('mufenglin_HDInsight_e8_properties_typeProperties_userName')]",
 					"password": {
 						"type": "SecureString",
@@ -466,6 +466,55 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
 				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/test_get_trigger_time')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Spark1",
+						"type": "HDInsightSpark",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "jars",
+							"entryFilePath": "FilterInternal.jar",
+							"arguments": [
+								"testArg=4"
+							],
+							"sparkJobLinkedService": {
+								"referenceName": "mufenglin_AzureBlobStorage",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "mufenglin_HDInsight_e8",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "foo"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]"
 			]
 		},
 		{
