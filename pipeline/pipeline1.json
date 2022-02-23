@@ -1,0 +1,37 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Spark1",
+				"type": "HDInsightSpark",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"rootPath": "jars",
+					"entryFilePath": "datax-host_2.4_2.11-1.2.8-SNAPSHOT-mufenglin-monitoring-test.jar",
+					"className": "datax.app.MonitoringApp",
+					"sparkJobLinkedService": {
+						"referenceName": "mufenglin_AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "mufenglin_HDInsight_e8",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "monitoring"
+		},
+		"annotations": []
+	}
+}
