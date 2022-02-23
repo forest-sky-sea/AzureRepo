@@ -283,6 +283,56 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/test_get_trigger_time')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Spark1",
+						"type": "HDInsightSpark",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "jars",
+							"entryFilePath": "FilterInternal.jar",
+							"arguments": [
+								"testArg=4"
+							],
+							"className": "testpackage.TestFilterInternal",
+							"sparkJobLinkedService": {
+								"referenceName": "mufenglin_AzureBlobStorage",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "mufenglin_HDInsight_e8",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "foo"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_AzureBlobStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/mufenglin_HDInsight_e8')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/test_script_pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -395,7 +445,8 @@
 						"spark.yarn.preserve.staging.files": "true"
 					},
 					"newClusterVersion": "10.0.x-scala2.12",
-					"newClusterInitScripts": []
+					"newClusterInitScripts": [],
+					"clusterOption": "Fixed"
 				}
 			},
 			"dependsOn": []
@@ -499,7 +550,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/test_get_trigger_time')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -518,11 +569,8 @@
 						"userProperties": [],
 						"typeProperties": {
 							"rootPath": "jars",
-							"entryFilePath": "FilterInternal.jar",
-							"arguments": [
-								"testArg=4"
-							],
-							"className": "testpackage.TestFilterInternal",
+							"entryFilePath": "datax-host_2.4_2.11-1.2.8-SNAPSHOT-mufenglin-monitoring-test.jar",
+							"className": "datax.app.MonitoringApp",
 							"sparkJobLinkedService": {
 								"referenceName": "mufenglin_AzureBlobStorage",
 								"type": "LinkedServiceReference"
@@ -539,7 +587,7 @@
 					"cancelAfter": {}
 				},
 				"folder": {
-					"name": "foo"
+					"name": "monitoring"
 				},
 				"annotations": []
 			},
